@@ -18,13 +18,17 @@ content = initData()
 
 
 @app.route("/<year>/<month>")
-def hello_world(year, month):
+def process(year, month):
     row = {
         'Год': year,
         'Номер недели': month
     }
     # week = year + '-' + month
     return jsonify(execute(row))
+
+@app.route("/actuator/health")
+def actuator():
+    return 'OK'
 
 
 def execute(row):
